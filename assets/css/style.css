@@ -1383,7 +1383,7 @@ a:hover {
   transition: all 0.3s linear;
   background: var(--saas-green);
   letter-spacing: -0.1px;
-  box-shadow: 0px 4px 12px -2px #0a4a2c;
+  box-shadow: 0px 4px 12px -2px #05361f;
   position: relative;
   z-index: 1;
 }
@@ -2074,7 +2074,7 @@ h2.wow.fadeInUp.home_5_testi {
   opacity: 1;
 }
 .service_tab_button.active .icon, .service_tab_button:hover .icon {
-  background: #386ffb;
+  background: #047f7e;
   box-shadow: 0px 4px 12px -2px rgba(56, 111, 251, 0.35);
 }
 .service_tab_button.active .icon svg path, .service_tab_button:hover .icon svg path {
