@@ -665,7 +665,16 @@
   .promo_area_three .promo_content h2 {
     font-size: 45px;
     line-height: 62px;
-    margin-bottom: 12px;
+    /* margin-bottom: 12px; */
+  }
+  .promo_content h2 {
+    margin-bottom: 40px;
+  }
+  .promo_content .saas_btn {
+    background: #fff;
+    color: var(--saas-green);
+    border-color: #fff;
+    margin-top: 0;
   }
   .promo_area_three .promo_content h2 {
     line-height: 56px;
