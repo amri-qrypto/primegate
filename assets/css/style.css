@@ -556,7 +556,7 @@ a:hover {
   color: #1f0343;
   line-height: 1.1;
   display: inline-flex;
-  padding: 15px 20px;
+  padding: 10px 15px;
   background: #fff;
   border: 1px solid rgba(31, 3, 67, 0.12);
   border-radius: 8px;
@@ -871,7 +871,7 @@ a:hover {
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .saas_banner_area {
-  padding: 200px 0px 100px;
+  padding: 150px 0px 1500px;
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -891,8 +891,8 @@ a:hover {
   padding-right: 0px;
 }
 .saas_banner_content h1 {
-  font-size: 70px;
-  line-height: 84px;
+  font-size: 56px;
+  line-height: 66px;
   font-family: var(--saas-Inter);
   color: #0f172a;
   margin-bottom: 20px;
@@ -1377,13 +1377,28 @@ a:hover {
   font-size: 18px;
   line-height: 28px;
   font-weight: 600;
-  padding: 16px 29px;
+  padding: 10px 23px;
   border-radius: 10px;
   display: inline-block;
   transition: all 0.3s linear;
   background: var(--saas-green);
   letter-spacing: -0.1px;
   box-shadow: 0px 4px 12px -2px #05361f;
+  position: relative;
+  z-index: 1;
+}
+
+.saas_btn_small {
+  color: #fff;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  padding: 12px 25px;
+  border-radius: 10px;
+  display: inline-block;
+  transition: all 0.3s linear;
+  background: var(--saas-green);
+  letter-spacing: -0.1px;
   position: relative;
   z-index: 1;
 }
@@ -1464,7 +1479,7 @@ a:hover {
   overflow: hidden;
   padding-left: 125px;
   padding-right: 125px;
-  padding-top: 80px;
+  padding-top: 120px;
 }
 .saas_client_logo_area .min_client_area {
   border-bottom: 0px;
