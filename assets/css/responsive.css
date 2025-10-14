@@ -391,6 +391,23 @@
     padding-left: 0;
     padding-right: 0;
   }
+  .why_institutions_slider_wrapper {
+    margin-top: 40px;
+  }
+  .why_slide {
+    padding: 24px;
+  }
+  .why_institutions_nav {
+    position: static;
+    transform: none;
+    margin-top: 30px;
+    justify-content: center;
+    gap: 16px;
+  }
+  .why_institutions_nav .slick-prev,
+  .why_institutions_nav .slick-next {
+    margin: 0;
+  }
   .f_widget {
     margin-bottom: 40px;
   }
@@ -413,13 +430,8 @@
   .features_tab_inner .nav .nav-item {
     width: calc(100% / 3);
   }
-  .min_client_area .item {
-    width: calc(100% / 4);
-  }
-  .min_client_area {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+  .client_logo_slider .slick-slide {
+    margin: 0 12px;
   }
   .features_tab_inner .saas_features_img {
     padding: 15px 0px 0px;
@@ -706,6 +718,26 @@
   .features_tab_inner .nav .nav-item {
     width: calc(100% / 2);
   }
+  .why_institutions_slider {
+    margin: 0;
+  }
+  .why_institutions_slider .slick-slide {
+    padding: 0 10px;
+  }
+  .why_slide {
+    padding: 22px;
+  }
+  .why_slide h3 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .why_institutions_nav {
+    margin-top: 24px;
+  }
+  .why_institutions_nav .slick-arrow {
+    width: 44px;
+    height: 44px;
+  }
   .subscribe_inner {
     padding: 30px 20px;
   }
@@ -897,6 +929,9 @@
   .promo_tab_box .nav .nav-item .nav-link img {
     margin-right: 8px;
   }
+  .client_logo_slider .slick-slide {
+    margin: 0 6px;
+  }
   .saas_banner_content p,
   .section_title_two p,
   .saas_accordion_item .accordion-body,
@@ -915,20 +950,30 @@
     width: 110px;
     left: 0px;
   }
+  .why_slide {
+    padding: 20px;
+  }
+  .why_slide h3 {
+    font-size: 22px;
+    line-height: 30px;
+  }
+  .why_slide_label {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+  .why_institutions_nav {
+    margin-top: 20px;
+  }
+  .why_institutions_nav .slick-arrow {
+    width: 40px;
+    height: 40px;
+  }
   .faq_inner .accordion-item .accordion-header .accordion-button {
     font-size: 20px;
     line-height: 26px;
   }
   .faq_inner .accordion-item {
     margin-bottom: 5px;
-  }
-  .min_client_area {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .min_client_area .item {
-    width: calc(100% / 3);
-    padding: 5px;
   }
   .saas_features_content h2,
   .section_title h2,

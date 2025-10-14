@@ -125,6 +125,97 @@
     });
   }
 
+  if ($(".client_logo_slider").length) {
+    $(".client_logo_slider").slick({
+      autoplay: true,
+      autoplaySpeed: 0,
+      speed: 4000,
+      cssEase: "linear",
+      infinite: true,
+      slidesToShow: 6,
+      slidesToScroll: 1,
+      arrows: false,
+      pauseOnHover: false,
+      pauseOnFocus: false,
+      responsive: [
+        {
+          breakpoint: 1400,
+          settings: {
+            slidesToShow: 5,
+          },
+        },
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 4,
+          },
+        },
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 3,
+          },
+        },
+        {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 2,
+          },
+        },
+      ],
+    });
+  }
+
+  if ($(".why_institutions_slider").length) {
+    $(".why_institutions_slider").slick({
+      autoplay: false,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      centerMode: true,
+      centerPadding: "60px",
+      dots: false,
+      arrows: true,
+      infinite: true,
+      appendArrows: ".why_institutions_nav",
+      prevArrow:
+        '<button type="button" class="slick-prev" aria-label="Previous"><i class="ti-arrow-left"></i></button>',
+      nextArrow:
+        '<button type="button" class="slick-next" aria-label="Next"><i class="ti-arrow-right"></i></button>',
+      focusOnSelect: true,
+      responsive: [
+        {
+          breakpoint: 1400,
+          settings: {
+            slidesToShow: 2,
+            centerMode: true,
+            centerPadding: "120px",
+          },
+        },
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 2,
+            centerMode: false,
+          },
+        },
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 1,
+            centerMode: false,
+          },
+        },
+        {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1,
+            centerMode: false,
+          },
+        },
+      ],
+    });
+  }
+
   // Counter Up
   if ($(".counter").length) {
     $(".counter").counterUp({
