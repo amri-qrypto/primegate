@@ -450,4 +450,306 @@
   }
 
   loader();
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const track = document.getElementById("institutionsHeroTrack");
+    if (!track) return;
+
+    const cards = Array.from(track.querySelectorAll(".institutions-hero-card"));
+    const prevButton = document.getElementById("institutionsHeroPrev");
+    const nextButton = document.getElementById("institutionsHeroNext");
+
+    if (cards.length === 0 || !prevButton || !nextButton) return;
+
+    let activeIndex = cards.findIndex((card) => card.classList.contains("is-active"));
+    if (activeIndex < 0) {
+      activeIndex = 0;
+    }
+
+    let touchStartX = null;
+
+    const updateAccessibility = () => {
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      cards.forEach((card, index) => {
+        const isActive = index === activeIndex;
+        const isHidden = card.classList.contains("is-hidden");
+
+        if (isMobile) {
+          card.setAttribute("aria-hidden", isActive ? "false" : "true");
+          card.tabIndex = isActive ? 0 : -1;
+        } else {
+          card.setAttribute("aria-hidden", isHidden ? "true" : "false");
+          card.tabIndex = isHidden ? -1 : 0;
+        }
+      });
+    };
+
+    const applyPositions = () => {
+      const leftIndex = (activeIndex + cards.length - 1) % cards.length;
+      const rightIndex = (activeIndex + 1) % cards.length;
+
+      cards.forEach((card, index) => {
+        card.classList.remove("is-left", "is-center", "is-right", "is-hidden", "is-active", "is-primary");
+
+        if (index === activeIndex) {
+          card.classList.add("is-center", "is-active", "is-primary");
+        } else if (index === leftIndex) {
+          card.classList.add("is-left");
+        } else if (index === rightIndex) {
+          card.classList.add("is-right");
+        } else {
+          card.classList.add("is-hidden");
+        }
+      });
+
+      updateAccessibility();
+    };
+
+    const setActiveIndex = (index) => {
+      activeIndex = ((index % cards.length) + cards.length) % cards.length;
+      applyPositions();
+    };
+
+    const handleMove = (delta) => {
+      setActiveIndex(activeIndex + delta);
+    };
+
+    prevButton.addEventListener("click", () => handleMove(-1));
+    nextButton.addEventListener("click", () => handleMove(1));
+
+    cards.forEach((card, index) => {
+      card.addEventListener("focus", () => {
+        setActiveIndex(index);
+      });
+    });
+
+    track.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        handleMove(-1);
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        handleMove(1);
+      }
+    });
+
+    track.addEventListener("touchstart", (event) => {
+      touchStartX = event.touches[0]?.clientX ?? null;
+    });
+
+    track.addEventListener("touchend", (event) => {
+      if (touchStartX === null) return;
+      const deltaX = event.changedTouches[0]?.clientX - touchStartX;
+      if (Math.abs(deltaX) > 40) {
+        handleMove(deltaX < 0 ? 1 : -1);
+      }
+      touchStartX = null;
+    });
+
+    window.addEventListener("resize", applyPositions);
+
+    applyPositions();
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const track = document.getElementById("tokenizedRwaTrack");
+    if (!track) return;
+
+    const prevButton = document.getElementById("tokenizedRwaPrev");
+    const nextButton = document.getElementById("tokenizedRwaNext");
+
+    if (!prevButton || !nextButton) return;
+
+    let isAnimating = false;
+    let touchStartX = null;
+    let pendingFrame = null;
+    let activeTransitionCleanup = null;
+
+    const getGapValue = () => {
+      const style = window.getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || "0");
+      return Number.isNaN(gap) ? 0 : gap;
+    };
+
+    const getStepDistance = () => {
+      const firstCard = track.querySelector(".token-rwa-card");
+      if (!firstCard) return 0;
+      return firstCard.getBoundingClientRect().width + getGapValue();
+    };
+
+    const translateValue = (value) => `translate3d(${value}px, 0, 0)`;
+
+    const clearTransitionListeners = () => {
+      if (typeof activeTransitionCleanup === "function") {
+        activeTransitionCleanup();
+        activeTransitionCleanup = null;
+      }
+    };
+
+    const clearPendingFrame = () => {
+      if (pendingFrame !== null) {
+        cancelAnimationFrame(pendingFrame);
+        pendingFrame = null;
+      }
+    };
+
+    const resetTrack = () => {
+      clearPendingFrame();
+      clearTransitionListeners();
+      track.style.transition = "none";
+      track.style.transform = translateValue(0);
+      isAnimating = false;
+    };
+
+    const startTransition = (from, to, { onFinish, onCancel } = {}) => {
+      clearTransitionListeners();
+      clearPendingFrame();
+
+      const handleTransitionEnd = (event) => {
+        if (event.type === "transitionend" && event.propertyName !== "transform") {
+          return;
+        }
+
+        clearTransitionListeners();
+
+        if (event.type === "transitioncancel") {
+          if (typeof onCancel === "function") {
+            onCancel();
+          } else {
+            resetTrack();
+          }
+          return;
+        }
+
+        if (typeof onFinish === "function") {
+          onFinish();
+        }
+      };
+
+      track.addEventListener("transitionend", handleTransitionEnd);
+      track.addEventListener("transitioncancel", handleTransitionEnd);
+
+      activeTransitionCleanup = () => {
+        track.removeEventListener("transitionend", handleTransitionEnd);
+        track.removeEventListener("transitioncancel", handleTransitionEnd);
+      };
+
+      track.style.transition = "none";
+      track.style.transform = translateValue(from);
+      track.getBoundingClientRect();
+
+      pendingFrame = requestAnimationFrame(() => {
+        pendingFrame = null;
+        track.style.transition = `transform 520ms cubic-bezier(0.45, 0, 0.55, 1)`;
+        track.style.transform = translateValue(to);
+      });
+    };
+
+    const shift = (direction) => {
+      if (isAnimating) return;
+      const distance = getStepDistance();
+      if (!distance) return;
+
+      isAnimating = true;
+
+      if (direction === -1) {
+        const lastCard = track.lastElementChild;
+        if (!lastCard) {
+          resetTrack();
+          return;
+        }
+
+      track.insertBefore(lastCard, track.firstElementChild);
+
+      startTransition(-distance, 0, {
+          onFinish: () => {
+            resetTrack();
+          },
+          onCancel: () => {
+            const insertedCard = track.firstElementChild;
+            if (insertedCard) {
+              track.appendChild(insertedCard);
+            }
+            resetTrack();
+          },
+        });
+        return;
+      }
+
+      const firstCard = track.firstElementChild;
+      if (!firstCard) {
+        resetTrack();
+        return;
+      }
+
+      startTransition(0, -distance, {
+        onFinish: () => {
+          track.style.transition = "none";
+          track.appendChild(firstCard);
+          track.style.transform = translateValue(0);
+          isAnimating = false;
+        },
+        onCancel: () => {
+          resetTrack();
+        },
+      });
+    };
+
+    const moveNext = () => shift(1);
+    const movePrev = () => shift(-1);
+
+    prevButton.addEventListener("click", movePrev);
+    nextButton.addEventListener("click", moveNext);
+
+    track.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        movePrev();
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        moveNext();
+      }
+    });
+
+    track.addEventListener("touchstart", (event) => {
+      touchStartX = event.touches[0]?.clientX ?? null;
+    });
+
+    track.addEventListener("touchend", (event) => {
+      if (touchStartX === null) return;
+      const deltaX = event.changedTouches[0]?.clientX - touchStartX;
+      if (Math.abs(deltaX) > 40) {
+        if (deltaX < 0) {
+          moveNext();
+        } else {
+          movePrev();
+        }
+      }
+      touchStartX = null;
+    });
+
+    track.addEventListener(
+      "wheel",
+      (event) => {
+        if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) {
+          return;
+        }
+
+        event.preventDefault();
+        if (event.deltaX > 0) {
+          moveNext();
+        } else if (event.deltaX < 0) {
+          movePrev();
+        }
+      },
+      { passive: false }
+    );
+
+    window.addEventListener("resize", resetTrack);
+  });
+
 })(jQuery);

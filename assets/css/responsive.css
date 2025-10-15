@@ -209,7 +209,7 @@
     left: 5%;
   }
   .saas_banner_area {
-    padding: 150px 0px 100px;
+    padding: 150px 0px 10px;
   }
   .saas_features_item + .saas_features_item {
     margin-top: 100px;
@@ -323,7 +323,7 @@
     margin: 30px auto 0px;
   }
   .saas_banner_area {
-    padding: 100px 0px 80px;
+    padding: 100px 0px 10px;
   }
   .saas_banner_content h1 {
     font-size: 52px;
