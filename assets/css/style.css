@@ -111,6 +111,10 @@ a:hover {
   margin-bottom: 100px;
 }
 
+.mb-70 {
+  margin-bottom: 70px;
+}
+
 .mb-18 {
   margin-bottom: 18px;
 }
@@ -451,6 +455,62 @@ a:hover {
   background: #fff;
   top: 100%;
   box-shadow: 0px 6px 20px 0px rgba(1, 6, 33, 0.08);
+}
+.menu > .nav-item.submenu .solutions-dropdown {
+  min-width: 440px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.solutions-dropdown-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: #fff;
+  box-shadow: 0 0 0 rgba(15, 23, 42, 0);
+  transition: all 0.2s ease;
+  color: #0f172a;
+  font-family: var(--saas-Inter);
+  text-decoration: none;
+}
+.solutions-dropdown-item:hover,
+.solutions-dropdown-item:focus {
+  border-color: rgba(37, 191, 130, 0.2);
+  background: rgba(240, 253, 250, 0.6);
+  /* box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08); */
+  color: #0f172a;
+}
+.solutions-dropdown-icon {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(37, 191, 130, 0.12);
+  color: var(--saas-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.solutions-dropdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.solutions-dropdown-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #0f172a;
+}
+.solutions-dropdown-description {
+  font-size: 12px;
+  line-height: 22px;
+  color: #475569;
 }
 @media (min-width: 992px) {
   .menu > .nav-item.submenu .dropdown-menu {
@@ -912,6 +972,80 @@ a:hover {
   .nav_right .login_btn,
   .nav_right .signup_btn {
     padding: 12px;
+  }
+}
+@media (max-width: 991px) {
+  .menu > .nav-item.submenu .solutions-dropdown {
+    min-width: 100%;
+    padding: 12px 0;
+    box-shadow: none;
+    background: transparent;
+  }
+  .solutions-dropdown-item {
+    border-color: rgba(15, 23, 42, 0.08);
+    background: #fff;
+    box-shadow: none;
+    padding: 16px;
+  }
+  .solutions-dropdown-item:hover,
+  .solutions-dropdown-item:focus {
+    box-shadow: none;
+    background: rgba(240, 253, 250, 0.6);
+  }
+  .solutions-dropdown-icon {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+    border-radius: 12px;
+    font-size: 18px;
+  }
+  .solutions-dropdown-content {
+    gap: 4px;
+  }
+  .solutions-dropdown-title {
+    font-size: 17px;
+  }
+  .solutions-dropdown-description {
+    font-size: 13px;
+    line-height: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .solutions-dropdown-item {
+    padding: 15px;
+  }
+  .solutions-dropdown-title {
+    font-size: 16px;
+  }
+  .solutions-dropdown-description {
+    font-size: 12.5px;
+    line-height: 19px;
+  }
+  .solutions-dropdown-icon {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+    font-size: 17px;
+  }
+}
+@media (max-width: 575px) {
+  .solutions-dropdown-item {
+    padding: 14px;
+    border-radius: 12px;
+  }
+  .solutions-dropdown-title {
+    font-size: 15px;
+  }
+  .solutions-dropdown-description {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .solutions-dropdown-icon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+    border-radius: 10px;
+    font-size: 16px;
   }
 }
 @media (max-width: 991px) {
@@ -1850,6 +1984,11 @@ a:hover {
   position: relative;
 }
 
+.tokenized-rwa-viewport {
+  position: relative;
+  overflow: hidden;
+}
+
 .tokenized-rwa-controls {
   position: absolute;
   top: 50%;
@@ -2084,10 +2223,10 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 10px 40px;
-  border-radius: 14px;
-  font-size: 11px;
+  gap: 12px;
+  padding: 14px 52px;
+  border-radius: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--saas-green);
   border: 1px solid var(--saas-green);
@@ -2410,11 +2549,7 @@ a:hover {
   width: 100%;
 }
 
-@media (min-width: 425px) {
-  .partners-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
+
 
 @media (min-width: 768px) {
   .partners-grid {
@@ -2480,6 +2615,27 @@ a:hover {
 .partner-card__name {
   font-size: 16px;
   line-height: 1.4;
+}
+
+@media (max-width: 430px) {
+  .partners-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .partner-card {
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .partner-card__icon {
+    width: 46px;
+    height: 46px;
+    font-size: 14px;
+  }
+
+  .partner-card__name {
+    font-size: 12px;
+  }
 }
 
 /* ---------------------------------------------------------------------------- */
