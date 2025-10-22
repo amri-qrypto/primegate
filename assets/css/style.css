@@ -2288,18 +2288,21 @@ a:hover {
 }
 
 @media (max-width: 767px) {
+  .tokenized-rwa-track {
+    --tokenized-rwa-visible: 1;
+  }
+
+  .tokenized-rwa-carousel .tokenized-rwa-control {
+    opacity: 1;
+    visibility: visible;
+  }
+
   .tokenized-rwa-control.prev {
     margin-left: -6px;
   }
 
   .tokenized-rwa-control.next {
     margin-right: -6px;
-  }
-}
-
-@media (max-width: 425px) {
-  .tokenized-rwa-track {
-    --tokenized-rwa-visible: 1;
   }
 }
 /* ------------------------------------------------------------- */
