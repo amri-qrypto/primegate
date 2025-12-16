@@ -2068,8 +2068,8 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: clamp(48px, 5.2vw, 56px);
-  height: clamp(48px, 5.2vw, 56px);
+  width: clamp(88px, 5.2vw, 356px);
+  height: clamp(88px, 5.2vw, 356px);
   border-radius: 50%;
   /* background: linear-gradient(135deg, #2ec49c 0%, #0d8b6b 100%); */
   padding: clamp(3px, 0.8vw, 4px);
@@ -2086,6 +2086,27 @@ a:hover {
   display: block;
 }
 
+.token-card-logo-detail {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(128px, 7.2vw, 656px);
+  height: clamp(128px, 7.2vw, 656px);
+  border-radius: 50%;
+  padding: clamp(3px, 0.8vw, 4px);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.token-card-logo-detail img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
 .token-card-name {
   font-size: clamp(18px, 2.4vw, 22px);
   font-weight: 700;
@@ -2095,8 +2116,16 @@ a:hover {
 
 .token-card-subtitle {
   font-size: clamp(13px, 1.6vw, 15px);
-  line-height: 1.45;
-  color: #5b6785;
+  line-height: 1;
+  color: #5b6785; 
+  margin-bottom: 0;
+}
+
+.token-card-subtitle-contract {
+  font-size: clamp(13px, 1.6vw, 15px);
+  font-weight: 600;
+  line-height: 1;
+  color: #5b6785; 
   margin-bottom: 0;
 }
 
@@ -2105,6 +2134,360 @@ a:hover {
   width: 100%;
   background: linear-gradient(90deg, rgba(225, 231, 245, 0), #e1e7f5 20%, #e1e7f5 80%, rgba(225, 231, 245, 0));
   margin-bottom: clamp(16px, 2.2vw, 22px);
+}
+
+.token-detail-section {
+  padding-top: clamp(48px, 8vw, 80px);
+}
+
+.token-detail-back {
+  border-radius: 12px;
+  font-weight: 600;
+  color: #0d1c4a;
+  border-color: #d7e2ed;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #fff;
+}
+
+.token-detail-back:hover,
+.token-detail-back:focus {
+  background: #eef6f2;
+  border-color: #2ec49c;
+  color: #0d1c4a;
+}
+
+.token-detail-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.token-detail-sidebar-card {
+  background: #ffffff;
+  border: 1px solid #e8edf5;
+  border-radius: 20px;
+  box-shadow: 0 18px 48px rgba(13, 28, 74, 0.06);
+  padding: clamp(22px, 3vw, 32px);
+}
+
+.token-detail-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .token-detail-header {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.token-card-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.token-detail-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.token-detail-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(46, 196, 156, 0.12);
+  border: 1px solid rgba(46, 196, 156, 0.32);
+  color: #0d1c4a;
+  line-height: 1.05;
+}
+
+.token-detail-badge-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0d8b6b;
+}
+
+.token-detail-badge-value {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.token-detail-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.token-detail-block {
+  padding-bottom: 2px;
+  /* border-bottom: 1px solid #e6edf5; */
+}
+
+.token-detail-block:last-of-type {
+  /* border-bottom: none; */
+  padding-bottom: 0;
+}
+
+.token-detail-heading {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0d1c4a;
+  margin-bottom: 30px;
+}
+
+.token-detail-text {
+  color: #4c5671;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.token-detail-facts {
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.token-detail-facts-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e8edf5;
+  align-items: center;
+}
+
+.token-detail-facts-row:last-child {
+  border-bottom: none;
+}
+
+.token-detail-facts-label {
+  font-weight: 600;
+  color: #0d1c4a;
+}
+
+.token-detail-facts-value {
+  color: #4c5671;
+  text-align: right;
+}
+
+.token-detail-sidebar-header h4 {
+  font-weight: 700;
+  color: #0d1c4a;
+  font-size: 18px;
+}
+
+.token-detail-sidebar-header p {
+  color: #4c5671;
+  font-size: 13px;
+}
+
+.disclaimer-text {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #53607c;
+}
+
+.token-detail-subscribe {
+  margin-top: 10px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.token-detail-subscribe-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.token-detail-subscribe-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: #f7f9fc;
+  border-radius: 9px;
+  padding: 4px;
+  border: 1px solid #e0e6f2;
+}
+
+.subscribe-tab {
+  border: none;
+  background: transparent;
+  border-radius: 9px;
+  padding: 8px 16px;
+  font-weight: 700;
+  color: #5b6785;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.subscribe-tab.active {
+  background: #ffffff;
+  /* color: #0d1c4a; */
+  /* box-shadow: 0 12px 24px rgba(13, 28, 74, 0.12); */
+  border: 1px solid #cdd6eb;
+}
+
+.token-detail-network {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #eef6f2;
+  border: 1px solid #d8ebdf;
+  border-radius: 12px;
+  padding: 6px 10px;
+  font-weight: 700;
+  color: #0d1c4a;
+  font-size: 14px;
+}
+
+.network-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #94fdfdda, #047f7fda);
+  box-shadow: 0 0 0 4px rgba(59, 112, 255, 0.12);
+}
+
+.token-detail-subscribe-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subscription-field {
+  background: #f9fbff;
+  border: 1px solid #e2e9f5;
+  border-radius: 12px;
+  padding: 9px 12px;
+  box-shadow: none;
+}
+
+.subscription-field-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.subscription-label {
+  font-weight: 700;
+  color: #0d1c4a;
+  font-size: 12px;
+}
+
+.subscription-select,
+.subscription-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.subscription-token {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #047f7fda;
+  border-radius: 9px;
+  padding: 6px 10px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+  min-width: 86px;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.token-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2ec49c 0%, #12bd92 100%);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.token-icon-primary {
+  background: linear-gradient(135deg, #4b6cff 0%, #1f46ff 100%);
+}
+
+.subscription-balance {
+  color: #5b6785;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.subscription-amount {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0d1c4a;
+  letter-spacing: 0.01em;
+}
+
+.subscription-cta {
+  width: 100%;
+  border: none;
+  background: var(--saas-green);
+  border-radius: 90px;
+  padding: 10px 16px;
+  font-weight: 700;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  margin-top: 16px;
+}
+
+.subscribe-tab.active {
+  background: #ffffff;
+  /* color: #0d1c4a;
+  box-shadow: 0 10px 26px rgba(13, 28, 74, 0.12); */
+}
+
+.token-detail-network {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #eef6f2;
+  border: 1px solid #d8ebdf;
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(135deg, #047f7fda 0%, #047f7fda 100%);
+  /* box-shadow: 0 14px 24px rgba(33, 88, 255, 0.2); */
+  font-size: 14px;
+}
+
+.subscription-cta:hover,
+.subscription-cta:focus {
+  color: #ffffff;
+  filter: brightness(0.95);
 }
 
 .token-card-metrics {
