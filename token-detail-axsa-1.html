@@ -185,7 +185,7 @@
                     <span>Back to products</span>
                 </a>
                 <div class="row gy-4 mt-2">
-                    <div class="col-lg-8">
+                    <div class="col-lg-7">
                         <div class="token-detail-card">
                             <div class="token-detail-header">
                                 <div class="token-card-title">
@@ -274,11 +274,10 @@
                                         </table>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <div class="token-detail-sidebar-card">
                             <div class="token-detail-sidebar-header">
                                 <h4 class="mb-1">Subscribe &amp; Redeem</h4>
@@ -301,32 +300,50 @@
                                             <span class="subscription-label">Asset</span>
                                         </div>
                                         <div class="subscription-select">
-                                            <span class="subscription-token subscription-token-asset" data-subscribe-label="USDT" data-subscribe-icon="$" data-redeem-label="SAIF" data-redeem-icon="SAIF">
-                                                <span class="token-icon">$</span>
-                                                <span class="token-label">USDT</span>
+                                            <span class="subscription-token subscription-token-asset">
+                                                <span class="token-icon token-icon">SAIF</span>
+                                                <span class="token-label">SAIF</span>
                                             </span>
                                             <span class="subscription-balance">Balance: 0.00</span>
                                         </div>
                                     </div>
                                     <div class="subscription-field">
-                                        <div class="subscription-field-header">
+                                        <div class="subscription-field-header subscription-field-header-amount">
                                             <span class="subscription-label mode-label-amount">Subscription Amount</span>
+                                            <div class="subscription-token-selector currency-selector">
+                                                <button class="subscription-token subscription-token-currency subscription-dropdown-toggle" type="button">
+                                                    <span class="token-icon token-icon-primary">$</span>
+                                                    <span class="token-label">USDT</span>
+                                                    <span class="token-caret" aria-hidden="true"></span>
+                                                </button>
+                                                <div class="subscription-dropdown">
+                                                    <button class="subscription-dropdown-option" type="button" data-label="USD" data-icon="$" data-class="token-icon-primary">
+                                                        <span class="token-label">USD</span>
+                                                    </button>
+                                                    <button class="subscription-dropdown-option" type="button" data-label="USDC" data-icon="$" data-class="token-icon-primary">
+                                                        <span class="token-label">USDC</span>
+                                                    </button>
+                                                    <button class="subscription-dropdown-option" type="button" data-label="USDT" data-icon="$" data-class="token-icon-primary" data-selected="true">
+                                                        <span class="token-label">USDT</span>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="subscription-input">
                                             <div class="subscription-amount">0.00</div>
-                                            <span class="subscription-token subscription-token-amount" data-subscribe-label="USDT" data-subscribe-icon="$" data-redeem-label="SAIF" data-redeem-icon="SAIF">
-                                                <span class="token-icon">$</span>
+                                            <span class="subscription-token subscription-token-amount">
+                                                <span class="token-icon token-icon-primary">$</span>
                                                 <span class="token-label">USDT</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="subscription-field">
-                                        <div class="subscription-field-header">
+                                        <div class="subscription-field-header subscription-field-header-indicative">
                                             <span class="subscription-label mode-label-indicative">Indicative Quantity</span>
                                         </div>
                                         <div class="subscription-input">
                                             <div class="subscription-amount">0.00</div>
-                                            <span class="subscription-token subscription-token-indicative" data-subscribe-label="SAIF" data-subscribe-icon="SAIF" data-redeem-label="USDT" data-redeem-icon="$">
+                                            <span class="subscription-token subscription-token-indicative" data-subscribe-label="SAIF" data-subscribe-icon="SAIF" data-subscribe-class="token-icon" data-redeem-label="USDT" data-redeem-icon="$" data-redeem-class="token-icon">
                                                 <span class="token-icon token-icon-primary">SAIF</span>
                                                 <span class="token-label">SAIF</span>
                                             </span>
@@ -430,67 +447,166 @@
     <script src="assets/vendors/parallaxmouse/parallax.min.js"></script>
     <script src="assets/js/custom.js"></script>
     <script>
-        const subscribeTabs = document.querySelectorAll('.subscribe-tab');
-        const subscribeCard = document.querySelector('.token-detail-subscribe');
-        const amountLabel = document.querySelector('.mode-label-amount');
-        const indicativeLabel = document.querySelector('.mode-label-indicative');
-        const ctaButton = document.querySelector('.subscription-cta');
-        const tokens = document.querySelectorAll('.subscription-token-asset, .subscription-token-amount, .subscription-token-indicative');
+        document.addEventListener('DOMContentLoaded', () => {
+            const subscribeTabs = document.querySelectorAll('.subscribe-tab');
+            const subscribeCard = document.querySelector('.token-detail-subscribe');
+            const amountLabel = document.querySelector('.mode-label-amount');
+            const indicativeLabel = document.querySelector('.mode-label-indicative');
+            const ctaButton = document.querySelector('.subscription-cta');
+            const amountToken = document.querySelector('.subscription-token-amount');
+            const assetToken = document.querySelector('.subscription-token-asset');
+            const indicativeToken = document.querySelector('.subscription-token-indicative');
+            const amountHeader = document.querySelector('.subscription-field-header-amount');
+            const currencySelector = document.querySelector('.currency-selector');
+            const currencyToggle = document.querySelector('.subscription-dropdown-toggle');
+            const currencyDropdown = document.querySelector('.subscription-dropdown');
+            const currencyOptions = document.querySelectorAll('.subscription-dropdown-option');
+            const currencyToken = document.querySelector('.subscription-token-currency');
+            const indicativeHeader = document.querySelector('.subscription-field-header-indicative');
 
-        const copyByMode = {
-            subscribe: {
-                amountLabel: 'Subscription Amount',
-                indicativeLabel: 'Indicative Quantity',
-                cta: 'Subscribe now',
-            },
-            redeem: {
-                amountLabel: 'Redeem Quantity',
-                indicativeLabel: 'Indicative Proceeds',
-                cta: 'Redeem now',
-            },
-        };
+            const copyByMode = {
+                subscribe: {
+                    amountLabel: 'Subscription Amount',
+                    indicativeLabel: 'Indicative Quantity',
+                    cta: 'Subscribe now',
+                },
+                redeem: {
+                    amountLabel: 'Redeem Quantity',
+                    indicativeLabel: 'Indicative Proceeds',
+                    cta: 'Redeem now',
+                },
+            };
 
-        const applyTokenMode = (element, mode) => {
-            if (!element) return;
-            const label = element.querySelector('.token-label');
-            const icon = element.querySelector('.token-icon');
-            const labelKey = `${mode}Label`;
-            const iconKey = `${mode}Icon`;
+            const getOptionData = (option) => {
+                if (!option || !option.dataset) {
+                    return { label: '', icon: '', iconClass: 'token-icon-primary' };
+                }
 
-            if (label && element.dataset[labelKey]) {
-                label.textContent = element.dataset[labelKey];
-            }
+                const { label = '', icon = '', class: iconClass = 'token-icon-primary' } = option.dataset;
+                return {
+                    label,
+                    icon: icon || label,
+                    iconClass: iconClass || 'token-icon-primary',
+                };
+            };
 
-            if (icon && element.dataset[iconKey]) {
-                icon.textContent = element.dataset[iconKey];
-                const shouldHighlight = element.dataset[iconKey]?.toLowerCase().includes('tk');
-                icon.classList.toggle('token-icon-primary', shouldHighlight);
-            }
-        };
+            const getBaseToken = () => {
+                const indicativeDataset = indicativeToken ? indicativeToken.dataset || {} : {};
+                const assetDataset = assetToken ? assetToken.dataset || {} : {};
 
-        const setMode = (mode) => {
-            if (!subscribeCard || !copyByMode[mode]) return;
+                const label = indicativeDataset.subscribeLabel || assetDataset.baseLabel || '';
+                const icon = indicativeDataset.subscribeIcon || assetDataset.baseIcon || indicativeDataset.subscribeLabel || '';
+                const iconClass = indicativeDataset.subscribeClass || assetDataset.baseClass || 'token-icon';
 
-            subscribeCard.setAttribute('data-mode', mode);
-            if (amountLabel) amountLabel.textContent = copyByMode[mode].amountLabel;
-            if (indicativeLabel) indicativeLabel.textContent = copyByMode[mode].indicativeLabel;
-            if (ctaButton) ctaButton.textContent = copyByMode[mode].cta;
+                return { label, icon, iconClass };
+            };
 
-            tokens.forEach((token) => applyTokenMode(token, mode));
-        };
+            const baseToken = getBaseToken();
 
-        if (subscribeTabs.length) {
-            subscribeTabs.forEach((tab) => {
-                tab.addEventListener('click', () => {
-                    const mode = tab.dataset.mode;
-                    subscribeTabs.forEach((btn) => btn.classList.remove('active'));
-                    tab.classList.add('active');
-                    setMode(mode);
+            const findSelectedCurrency = () => {
+                const options = Array.from(currencyOptions || []);
+                const chosen = options.find((opt) => opt.dataset && opt.dataset.selected) || options[0];
+                return getOptionData(chosen);
+            };
+
+            let selectedCurrency = currencyOptions.length ? findSelectedCurrency() : null;
+
+            const setTokenDisplay = (tokenElement, tokenData, forcePrimary = false) => {
+                if (!tokenElement || !tokenData) return;
+                const label = tokenElement.querySelector('.token-label');
+                const icon = tokenElement.querySelector('.token-icon');
+
+                if (label) label.textContent = tokenData.label;
+
+                if (icon) {
+                    icon.textContent = tokenData.icon;
+                    icon.classList.remove('token-icon-primary', 'token-icon');
+                    icon.classList.add('token-icon');
+                    if (forcePrimary) {
+                        icon.classList.add('token-icon-primary');
+                    } else {
+                        icon.classList.add(tokenData.iconClass || 'token-icon');
+                    }
+                }
+            };
+
+            const syncCurrencyDisplay = () => {
+                setTokenDisplay(currencyToken, selectedCurrency);
+            };
+
+            const placeCurrencySelector = (mode) => {
+                if (!currencySelector) return;
+
+                if (mode === 'subscribe' && amountHeader) {
+                    amountHeader.appendChild(currencySelector);
+                }
+
+                if (mode === 'redeem' && indicativeHeader) {
+                    indicativeHeader.appendChild(currencySelector);
+                }
+            };
+
+            const setMode = (mode) => {
+                if (!subscribeCard || !copyByMode[mode]) return;
+
+                subscribeCard.setAttribute('data-mode', mode);
+                if (amountLabel) amountLabel.textContent = copyByMode[mode].amountLabel;
+                if (indicativeLabel) indicativeLabel.textContent = copyByMode[mode].indicativeLabel;
+                if (ctaButton) ctaButton.textContent = copyByMode[mode].cta;
+
+                placeCurrencySelector(mode);
+
+                if (mode === 'subscribe') {
+                    setTokenDisplay(assetToken, selectedCurrency);
+                    setTokenDisplay(amountToken, selectedCurrency);
+                    setTokenDisplay(indicativeToken, baseToken);
+                } else {
+                    setTokenDisplay(assetToken, baseToken);
+                    setTokenDisplay(amountToken, baseToken);
+                    setTokenDisplay(indicativeToken, selectedCurrency, true);
+                }
+
+                syncCurrencyDisplay();
+            };
+
+            if (subscribeTabs.length) {
+                subscribeTabs.forEach((tab) => {
+                    tab.addEventListener('click', () => {
+                        const mode = tab.dataset.mode;
+                        subscribeTabs.forEach((btn) => btn.classList.remove('active'));
+                        tab.classList.add('active');
+                        setMode(mode);
+                    });
                 });
-            });
-        }
+            }
 
-        setMode('subscribe');
+            if (currencyToggle && currencyDropdown) {
+                currencyToggle.addEventListener('click', () => {
+                    currencyDropdown.classList.toggle('open');
+                });
+            }
+
+            if (currencyOptions.length) {
+                currencyOptions.forEach((option) => {
+                    option.addEventListener('click', () => {
+                        selectedCurrency = getOptionData(option);
+                        currencyDropdown.classList.remove('open');
+                        const activeMode = subscribeCard ? subscribeCard.getAttribute('data-mode') || 'subscribe' : 'subscribe';
+                        setMode(activeMode);
+                    });
+                });
+            }
+
+            document.addEventListener('click', (event) => {
+                if (!currencyDropdown || !currencyToggle) return;
+                if (!currencyDropdown.contains(event.target) && !currencyToggle.contains(event.target)) {
+                    currencyDropdown.classList.remove('open');
+                }
+            });
+
+            syncCurrencyDisplay();
+            setMode('subscribe');
+        });
     </script>
 </body>
 

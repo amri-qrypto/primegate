@@ -2209,7 +2209,7 @@ a:hover {
   align-items: center;
   gap: 6px;
   padding: 6px 10px;
-  border-radius: 999px;
+  border-radius: 9px;
   background: rgba(46, 196, 156, 0.12);
   border: 1px solid rgba(46, 196, 156, 0.32);
   color: #0d1c4a;
@@ -2379,7 +2379,7 @@ a:hover {
 .subscription-field {
   background: #f9fbff;
   border: 1px solid #e2e9f5;
-  border-radius: 12px;
+  border-radius: 18px;
   padding: 9px 12px;
   box-shadow: none;
 }
@@ -2405,19 +2405,87 @@ a:hover {
   gap: 10px;
 }
 
+.subscription-token-selector {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.subscription-dropdown-toggle {
+  border: none;
+  background: transparent;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.subscription-dropdown-toggle:focus {
+  outline: none;
+}
+
+.token-caret {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #0d1c4a;
+  opacity: 0.6;
+}
+
+.subscription-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #ffffff;
+  border: 1px solid #e1e7ef;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 6px;
+  min-width: 160px;
+  display: none;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.subscription-dropdown.open {
+  display: flex;
+}
+
+.subscription-dropdown-option {
+  border: none;
+  background: transparent;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.subscription-dropdown-option:hover,
+.subscription-dropdown-option:focus {
+  background: #f0f4ff;
+}
+
 .subscription-token {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: #047f7fda;
-  border-radius: 9px;
-  padding: 6px 10px;
+  gap: 8px;
+  background: #f9fbff;
+  /* border-radius: 9px; */
+  /* padding: 6px 10px; */
   font-weight: 700;
-  color: #ffffff;
+  color: #0d1c4a;
   letter-spacing: 0.01em;
-  min-width: 86px;
+  /* min-width: 86px; */
+  min-width: 40px;
   justify-content: center;
   font-size: 12px;
+  /* border: 1px solid #d8ebdf; */
 }
 
 .token-icon {
@@ -2435,7 +2503,17 @@ a:hover {
 }
 
 .token-icon-primary {
-  background: linear-gradient(135deg, #4b6cff 0%, #1f46ff 100%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6782fa 0%, #566fff 100%);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .subscription-balance {
@@ -2454,17 +2532,17 @@ a:hover {
 .subscription-cta {
   width: 100%;
   border: none;
-  background: var(--saas-green);
+  background: var(--saas-secondary);
   border-radius: 90px;
   padding: 10px 16px;
   font-weight: 700;
-  color: #ffffff;
+  color: #121312;
   transition: all 0.2s ease;
   margin-top: 16px;
 }
 
 .subscribe-tab.active {
-  background: #ffffff;
+  background: #ffffff65;
   /* color: #0d1c4a;
   box-shadow: 0 10px 26px rgba(13, 28, 74, 0.12); */
 }
@@ -2475,7 +2553,7 @@ a:hover {
   gap: 8px;
   background: #eef6f2;
   border: 1px solid #d8ebdf;
-  border-radius: 12px;
+  border-radius: 60px;
   padding: 11px 14px;
   font-weight: 800;
   color: #ffffff;
@@ -2486,7 +2564,7 @@ a:hover {
 
 .subscription-cta:hover,
 .subscription-cta:focus {
-  color: #ffffff;
+  color: #121312;
   filter: brightness(0.95);
 }
 
